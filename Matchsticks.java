@@ -1,11 +1,9 @@
 import java.util.Arrays;
 public class Matchsticks {
-  // private User user;
-  // private Computer computer;
-  // private int numSticks = 21;
   final private static int maxSticks = 3;
   final private static int maxRow = 6;
   private int row[];
+  private int sticks;
   private int[] row1 = {0, 0, 0, 0, 0, 0, 1};
   private int[] row2 = {0, 0, 0, 0, 0, 1, 0, 1};
   private int[] row3 = {0, 0, 0, 0, 1, 0, 1, 0, 1};
@@ -13,6 +11,7 @@ public class Matchsticks {
   private int[] row5 = {0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
   private int[] row6 = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
   public void layoutMatchsticks(int row, int sticks) {
+    System.out.println();
     this.row = rowNum(row, sticks);
     if (row == 1) System.out.println("Row 1: " + toString(this.row));
     else System.out.println("Row 1: " + toString(row1));
@@ -36,6 +35,16 @@ public class Matchsticks {
       row[i] = 0;
     }
     return row;
+  }
+  public int totalSticksLeft(int rowNum, int stickNum) {
+    int[] row = rowNum(rowNum, stickNum);
+    sticks = 0;
+    for (int zeroOrOne : row) {
+      if (zeroOrOne == 1) {
+        sticks++;
+      }
+    }
+    return sticks;
   }
   public int[] rowNum(int row, int sticks) {
     if (row == 1) {
@@ -63,14 +72,6 @@ public class Matchsticks {
   }
   public static int getMaxSticks() {
     return maxSticks;
-  }
-  public int maxSticks(int row, int sticks) {
-    for (int i = 0; i < rowNum(row, sticks).length; i++) {
-      if (rowNum(row, sticks)[i] == 1) {
-        sticks++;
-      }
-    }
-    return sticks;
   }
   public String toString(int[] arr) {
     String layout = "";
