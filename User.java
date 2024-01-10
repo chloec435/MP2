@@ -3,13 +3,16 @@ import java.util.InputMismatchException;
 public class User {
   private int userSticks;
   private int userRow;
+  private int sticksLeft;
   public User(Matchsticks matchsticks) {
     rowAsk();
+    sticksLeft = matchsticks.totalSticksLeft(userRow, userSticks);
     stickAsk(matchsticks);
   }
   public void rowAsk() {
+    userRow = 0;
     while (userRow < 1 || userRow > Matchsticks.getMaxRow()) {
-      System.out.println("What row would you like to remove from?");
+      System.out.println("\nWhat row would you like to remove from?");
       boolean success = false;
       while (!success) {
         try {
@@ -28,49 +31,53 @@ public class User {
     }
   }
   public void stickAsk(Matchsticks m) {
-    while (userSticks < 1 || userSticks > Matchsticks.getMaxSticks()) {
+    userSticks = -1;
+    while (userSticks < 0 || userSticks > Matchsticks.getMaxSticks()) {
       System.out.println("How many sticks would you like to remove?");
       boolean success = false;
       while (!success) {
-        Scanner input = new Scanner(System.in);
-        userSticks = input.nextInt();
         try {
-        } catch (InputMismatchException i) {
+          Scanner input = new Scanner(System.in);
+          userSticks = input.nextInt();
+        } catch (InputMismatchException | ArrayIndexOutOfBoundsException e) {
           responseToErr();
         }
-        try {
-        } catch (ArrayIndexOutOfBoundsException a) {
-          responseToErr();
-        }
-        if (userSticks > 0 && userSticks <= Matchsticks.getMaxSticks()) {
-          if (userSticks <= m.maxSticks(userRow, userSticks)) {
+        if (userSticks >= Integer.MIN_VALUE) {
+          if (userSticks > -1 && userSticks <= Matchsticks.getMaxSticks()) {
             success = true;
-          } else {
-            cannotTakeSticks(m);
+            if (userSticks <= sticksLeft) {
+              success = true;
+            } else {
+              if (sticksLeft < userSticks) {
+                cannotTakeSticks(m);
+              } else {
+                responseToErr();
+              }
+            }
           }
-        } else {
-          responseToErr();
+          if (userSticks < 0 || userSticks > Matchsticks.getMaxSticks()) {
+            responseToErr();
+          }
         }
-      }
-      if (userSticks < 1 || userSticks > Matchsticks.getMaxSticks()) {
-        responseToErr();
-      } else {
-        break;
       }
     }
   }
   private void cannotTakeSticks(Matchsticks m) {
-    if (m.maxSticks(userRow, userSticks) < userSticks) {
-      if (m.maxSticks(userRow, userSticks) == 0) {
-        System.out.println("There are no sticks left in this row. Please try a different row.");
-      } else {
-        System.out.println("You can't take that many sticks. Please try again.");
-      }
-      stickAsk(m);
+    if (sticksLeft == 0) {
+      System.out.println("There are no sticks left in this row. Please try a different row.");
+    } else {
+      System.out.println("You can't take that many sticks. Please try again.");
     }
+    System.out.println();
+    m.layoutMatchsticks(6, 0);
+    rowAsk();
+    sticksLeft = m.totalSticksLeft(userRow, 0);
+    stickAsk(m);
   }
   private void responseToErr() {
-    System.out.println("Invalid number of sticks. Please try again. \nThe max number of sticks you can remove from each row is 3, with the exception of rows 1 and 2, which can only remove 1 or 2 sticks, respectively.");
+    System.out.println("Invalid number of sticks. Please try again. \nThe max number of sticks you can remove from each row is 3, with the exception of row 1 and row 2, which can only remove a max of 1 and 2 sticks respectively.");
+    System.out.println();
+    System.out.println("How many sticks would you like to remove?");
   }
   public int getUserRow() {
     return userRow;
