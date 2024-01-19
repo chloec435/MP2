@@ -84,7 +84,6 @@ public class User {
   private void responseToErr() {
     System.out.println("Invalid number of sticks. Please try again. \nThe max number of sticks you can remove from each row is 3, with the exception of row 1 and row 2, which can only remove a max of 1 and 2 sticks respectively.");
     System.out.println();
-    System.out.println("How many sticks would you like to remove?");
   }
   
   public int getUserRow() {
