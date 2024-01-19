@@ -44,7 +44,7 @@ public class User {
           userSticks = input.nextInt();
         } catch (InputMismatchException | ArrayIndexOutOfBoundsException e) {
           responseToErr();
-          stickAsk();
+          stickAsk(m);
         }
         
         if (userSticks >= Integer.MIN_VALUE) {
