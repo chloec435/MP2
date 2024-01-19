@@ -1,10 +1,12 @@
 public class Computer {
   private int computerRow;
   private int computerSticks;
+  
   public Computer(Matchsticks m) {
     System.out.println(chooseRow(m));
     System.out.println(takeSticks(m));
   }
+  
   public String chooseRow(Matchsticks m) {
     while (true) {
       computerRow = (int)(Math.random() * 6) + 1;
@@ -13,6 +15,7 @@ public class Computer {
       }
     }
   }
+  
   public String takeSticks(Matchsticks m) {
     while (true) {
       computerSticks = (int)(Math.random() * 3) + 1;
@@ -21,9 +24,11 @@ public class Computer {
       }
     }
   }
+  
   public int getCompRow() {
     return computerRow;
   }
+  
   public int getCompSticks() {
     return computerSticks;
   }
