@@ -46,7 +46,6 @@ public class User {
           responseToErr();
           stickAsk(m);
         }
-        
         if (userSticks >= Integer.MIN_VALUE) {
           if (userSticks > -1 && userSticks <= Matchsticks.getMaxSticks()) {
             success = true;
