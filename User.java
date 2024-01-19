@@ -44,7 +44,9 @@ public class User {
           userSticks = input.nextInt();
         } catch (InputMismatchException | ArrayIndexOutOfBoundsException e) {
           responseToErr();
+          stickAsk();
         }
+        
         if (userSticks >= Integer.MIN_VALUE) {
           if (userSticks > -1 && userSticks <= Matchsticks.getMaxSticks()) {
             success = true;
