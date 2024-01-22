@@ -36,9 +36,9 @@ public class User {
   public void stickAsk(Matchsticks m) {
     userSticks = -1;
     while (userSticks < 0 || userSticks > Matchsticks.getMaxSticks()) {
-      System.out.println("How many sticks would you like to remove?");
       boolean success = false;
       while (!success) {
+        System.out.println("How many sticks would you like to remove?");
         try {
           Scanner input = new Scanner(System.in);
           userSticks = input.nextInt();
