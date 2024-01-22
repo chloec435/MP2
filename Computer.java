@@ -8,12 +8,24 @@ public class Computer {
   }
   
   public String chooseRow(Matchsticks m) {
-    while (true) {
-      computerRow = (int)(Math.random() * 6) + 1;
-      if (m.totalSticksLeft(computerRow, 0) > 0) {
-        return "COMPUTER chooses row " + computerRow + ".";
+    computerRow = 1;
+    for (int i = 1; i < 6; i++) {
+      if (m.totalSticksLeft(i, 0) > m.totalSticksLeft(i+1, 0)) {
+        computerRow = i;
+      } else {
+        computerRow = i+1;
       }
     }
+    if (m.totalSticksLeft(computerRow, 0) > 0) {
+      return "COMPUTER chooses row " + computerRow + ".";
+    }
+//    while (true) {
+//      computerRow = (int)(Math.random() * 6) + 1;
+//      if (m.totalSticksLeft(computerRow, 0) > 0) {
+//        return "COMPUTER chooses row " + computerRow + ".";
+//      }
+//    }
+    return null;
   }
   
   public String takeSticks(Matchsticks m) {
