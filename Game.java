@@ -15,7 +15,7 @@ public class Game{
     askPlayer();
     play();
   }
-  
+
   public static void instructions() {
     System.out.println("|||      |||        |        |||||||||||     |||||||     |||      |||   ||||||||   |||||||||||  |||     |||||||     |||   |||   |||||||| ");
     System.out.println("||||    ||||       |||       |||||||||||   ||||    |||   |||      |||  |||    |||  |||||||||||  |||   ||||    |||   |||  |||   |||    |||");
@@ -33,6 +33,7 @@ public class Game{
     System.out.println();
   }
   
+  /**precondition: the input that the user enters in askPlayer() method should be either a 1 or a 2*/
   public void askPlayer() {
     System.out.println("Would you like to play against a computer (type \"1\") or another player (type \"2\")?");
     Scanner input = new Scanner(System.in);
@@ -87,14 +88,15 @@ public class Game{
     }
   }
   
-  
+  //the user's turn
   public void userTurn(Matchsticks m) {
     user = new User(m);
     row = user.getUserRow();
     sticks = user.getUserSticks();
     matchsticks.layoutMatchsticks(row, sticks);
   }
-  
+
+  //the computer's turn
   public void computerTurn(Matchsticks m) {
     computer = new Computer(m);
     row = computer.getCompRow();
