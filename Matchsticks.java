@@ -10,7 +10,8 @@ public class Matchsticks {
   private int[] row4 = {0, 0, 0, 1, 0, 1, 0, 1, 0, 1};
   private int[] row5 = {0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
   private int[] row6 = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1};
-  
+
+  //prints out the layout of the matchsticks
   public void layoutMatchsticks(int row, int sticks) {
     System.out.println();
     this.row = rowNum(row, sticks);
@@ -27,7 +28,8 @@ public class Matchsticks {
     if (row == 6) System.out.println("Row 6: " + toString(this.row));
     else System.out.println("Row 6: " + toString(row6));
   }
-  
+
+  //used to remove the number of sticks that the user specifies
   public int[] removeSticks(int[] row, int sticks) {
     int i = 0;
     for (int s = 1; s <= sticks; s++) {
@@ -38,7 +40,8 @@ public class Matchsticks {
     }
     return row;
   }
-  
+
+  //checks how many sticks are left in a specific row
   public int totalSticksLeft(int rowNum, int stickNum) {
     int[] row = rowNum(rowNum, stickNum);
     sticks = 0;
@@ -49,7 +52,8 @@ public class Matchsticks {
     }
     return sticks;
   }
-  
+
+  //returns the new row after the sticks are taken from that row
   public int[] rowNum(int row, int sticks) {
     if (row == 1) {
       return removeSticks(row1, sticks);
