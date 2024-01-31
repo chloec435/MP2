@@ -69,9 +69,9 @@ public class User {
   
   private void cannotTakeSticks(Matchsticks m) {
     if (sticksLeft == 0) {
-      System.out.println("There are no sticks left in this row. Please try a different row.");
+      System.out.println("⚠ There are no sticks left in this row. Please try a different row.");
     } else {
-      System.out.println("You can't take that many sticks. Please try again.");
+      System.out.println("⚠ You can't take that many sticks. Please try again.");
     }
     System.out.println();
     m.layoutMatchsticks(6, 0);
@@ -81,7 +81,7 @@ public class User {
   }
   
   private void responseToErr() {
-    System.out.println("Invalid number of sticks. Please try again. \nThe max number of sticks you can remove from each row is 3, with the exception of row 1 and row 2, which can only remove a max of 1 and 2 sticks respectively.");
+    System.out.println("⚠ Invalid number of sticks. Please try again. \nThe max number of sticks you can remove from each row is 3, with the exception of row 1 and row 2, which can only remove a max of 1 and 2 sticks respectively.");
     System.out.println();
   }
   
