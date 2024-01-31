@@ -22,11 +22,11 @@ public class User {
           userRow = input.nextInt();
           success = true;
         } catch (Exception InputMismatchException) {
-          System.out.println("Invalid row. Please enter an integer.");
+          System.out.println("⚠ Invalid row. Please enter an integer.");
         }
       }
       if (userRow < 1 || userRow > Matchsticks.getMaxRow()) {
-        System.out.println("Invalid row. Please try again.");
+        System.out.println("⚠ Invalid row. Please try again.");
       } else {
         break;
       }
