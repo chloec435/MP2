@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Game{
   private Matchsticks matchsticks;
@@ -36,19 +37,24 @@ public class Game{
   /**precondition: the input that the user enters in askPlayer() method should be either a 1 or a 2*/
   public void askPlayer() {
     System.out.println("Would you like to play against a computer (type \"1\") or another player (type \"2\")?");
-    Scanner input = new Scanner(System.in);
-    gameMode = input.nextInt();
-    Scanner player = new Scanner(System.in);
-    if (gameMode == 1) {
-      System.out.println("What is your name?");
-      playerOne = player.nextLine();
-    } else if (gameMode == 2) {
-      System.out.println("What is player one's name?");
-      playerOne = player.nextLine();
-      System.out.println("What is player two's name?");
-      playerTwo = player.nextLine();
-    } else {
-      System.out.println("Invalid input. Please try again.");
+    Scanner mode = new Scanner(System.in);
+    try {
+      gameMode = mode.nextInt();
+      Scanner player = new Scanner(System.in);
+      if (gameMode == 1) {
+        System.out.println("What is your name?");
+        playerOne = player.nextLine();
+      } else if (gameMode == 2) {
+        System.out.println("What is player one's name?");
+        playerOne = player.nextLine();
+        System.out.println("What is player two's name?");
+        playerTwo = player.nextLine();
+      } else {
+        System.out.println("⚠ Invalid input. Please try again.");
+        askPlayer();
+      }
+    } catch (InputMismatchException e) {
+      System.out.println("⚠ Invalid input. Please try again.");
       askPlayer();
     }
   }
