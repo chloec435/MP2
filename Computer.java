@@ -9,11 +9,9 @@ public class Computer {
   
   public String chooseRow(Matchsticks m) {
     computerRow = 1;
-    for (int i = 1; i < 6; i++) {
-      if (m.totalSticksLeft(i, 0) > m.totalSticksLeft(i+1, 0)) {
+    for (int i = 1; i <+ 6; i++) {
+      if (m.totalSticksLeft(i, 0) > computerRow) {
         computerRow = i;
-      } else {
-        computerRow = i+1;
       }
     }
     if (m.totalSticksLeft(computerRow, 0) > 0) {
